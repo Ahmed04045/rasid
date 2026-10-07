@@ -8,6 +8,8 @@ Gemini API to classify incidents and recommend an action.
 
 - `rasid-app/backend/` — FastAPI service used by the web app.
 - `rasid-app/frontend/` — Next.js dashboard.
+- `rasid-app/frontend-prototype/` — separate earlier frontend prototype, kept
+  for reference; the active app is `rasid-app/frontend/`.
 - `server.py` and `gemini_analyzer.py` — standalone backend prototype at the
   workspace root.
 - `mock_trigger.py` — command-line simulator for sample vehicle sensor events.
@@ -29,13 +31,14 @@ py -m venv .venv
 pip install -r requirements.txt
 ```
 
-Create `rasid-app/backend/.env` with your key:
+Copy the backend environment template and add your key:
 
-```dotenv
-GEMINI_API_KEY=your-api-key
+```powershell
+Copy-Item .env.example .env
 ```
 
-Then start the API:
+Edit `rasid-app/backend/.env` and replace the placeholder with your Gemini API
+key. Then start the API:
 
 ```powershell
 uvicorn server:app --reload
@@ -55,8 +58,14 @@ npm run dev
 ```
 
 Open `http://localhost:3000`. The frontend uses `http://localhost:8000` by
-default. To use another backend URL, set `NEXT_PUBLIC_API_URL` in
-`rasid-app/frontend/.env.local`.
+default. To configure it explicitly, copy the template to `.env.local`:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+Run that command from `rasid-app/frontend`. Edit `.env.local` if your backend
+uses a different URL.
 
 ## API routes
 

@@ -25,9 +25,6 @@ npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
 
-# Separate local Git checkout
-/idk/win/
-
 # Build output and operating-system files
 build/
 dist/
